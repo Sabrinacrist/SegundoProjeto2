@@ -10,7 +10,7 @@
     event.preventDefault() // evita que o formulário seja recarregado
     //Verificando os campos obrigatórios
     if (document.getElementById('nome').value === '') { alert('⚠ É obrigatório informar o nome!') }
-    else if (document.getElementById('email').value === '') { alert('⚠ É obrigatório informar o email!') }
+    else if (document.getElementById('altura').value === '') { alert('⚠ É obrigatório informar a altura!') }
     else if (document.getElementById('nascimento').value === '') { alert('⚠ É obrigatório informar a data de Nascimento!') }
     else if (document.getElementById('id').value !== '') { alterar(event, collection) }
     else { incluir(event, collection) }
@@ -51,7 +51,7 @@ function obtemDados(collection) {
         cabecalho.className = 'table-info'
         cabecalho.insertCell().textContent = 'Nome'
         cabecalho.insertCell().textContent = 'Nascimento'
-        cabecalho.insertCell().textContent = 'Email'
+        cabecalho.insertCell().textContent = 'Altura'
         cabecalho.insertCell().textContent = 'Sexo'
         cabecalho.insertCell().textContent = 'Peso'
         cabecalho.insertCell().textContent = 'Opções'
@@ -65,7 +65,7 @@ function obtemDados(collection) {
             let novalinha = tabela.insertRow()
             novalinha.insertCell().textContent = item.val().nome
             novalinha.insertCell().textContent = new Date(item.val().nascimento).toLocaleDateString()
-            novalinha.insertCell().textContent = item.val().email
+            novalinha.insertCell().textContent = item.val().altura
             novalinha.insertCell().textContent = item.val().sexo
             novalinha.insertCell().textContent = item.val().peso
             novalinha.insertCell().innerHTML =
@@ -130,9 +130,9 @@ function carregaDadosAlteracao(db, id) {
             if (item.ref.path.pieces_[1] === id) {
                 document.getElementById('id').value = item.ref.path.pieces_[1]
                 document.getElementById('nome').value = item.val().nome
-                document.getElementById('email').value = item.val().email
+                document.getElementById('altura').value = item.val().altura
                 document.getElementById('nascimento').value = item.val().nascimento
-                document.getElementById('salario').value = item.val().salario
+                document.getElementById('peso').value = item.val().peso
                 if (item.val().sexo === 'Masculino') {
                     document.getElementById('sexoM').checked = true
                 } else {
@@ -154,10 +154,10 @@ function alterar(event, collection) {
     //Enviando os dados dos campos para o Firebase
     return firebase.database().ref().child(collection + '/' + values.id).update({
         nome: values.nome,
-        email: values.email,
+        altura: values.altura,
         sexo: values.sexo,
         nascimento: values.nascimento,
-        salario: values.salario
+        peso: values.peso
     })
         .then(() => {
             alert('✅ Registro alterado com sucesso!')
