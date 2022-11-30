@@ -12,4 +12,4 @@ A aplicação prática do nosso projeto foi criada para cadastro de academia, on
 # Login para acesso
 👨‍💻Usuário aluno@fatec.com
 
-🔐SENHA 123456
+🔐Senha 123456
